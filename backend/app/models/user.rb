@@ -1,70 +1,57 @@
 require 'securerandom'
-require 'bcrypt' 1547541353458
+require 'bcrypt' 
+require 'active_model'
 
-class User 
- def self.create(user_id, name, email, password, role, introduction)
+class User
+  include ActiveModel::Model
+  include ActiveModel::Validations 
 
-  #validation
-  validate_email(email)
-  validate_password(password)
-  validate_role(role)
-  validate_introduction(introduction)
+  attr_accessor :user_id, :name, :email, :password, :password_digest, :role, :introduction
+  ROLES = ["student", "mentor"]
 
-  # fetch data from the cache or initialize empty array
-  users = Rails.cache.read('users')||[]
+  validates :name, presence: { message: "Name cannot be blank" }
+  validates :email, presence: { message: "Email cannot be blank" }, 
+                    uniqueness:{ message: "Email is registered" }, 
+                    format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email is invalid"}
+  validates :password, presence: { message: "Password cannot be blank" }, 
+                       length: {minimum: 6, message:"Password should not be less than 6 characters"}
+  
+  validates :role, inclusion: { in: ROLES, message:"It is not a valid role"}
+  validates :introduction, length: {maximum:  500, message: "Introduction cannot be longer than 500 characters"}
 
-  # Check if the email has been registered
-  user = users.find{ |user| user[:user_email] == user_email }
-
-  if user.nil?
-    Rails.logger.debug"Creating a new user."
-
-    user = {
-      user_id: SecureRandom.uuid,
-      name: name,
-      email: email,
-      password_digest: hash_password(password),
-      role: role,
-      introduction:introduction
-    }
-
-    users << user
-    Rails.cache.write('users',users)
-
-    return user
-  else
-    Rails.logger.debug"The email exists."
-
-    return nil
+  def initialize_user(attributes = {})
+    super
+    self.user_id ||= SecureRandom.uuid
   end
 
-  def self.hash_password(password)
-    BCrypt::Password.create(password)
-  end
+  def create_user
+    if valid?
+      users = Rails.cache.read('users') || []
+      existing_user = users.find{ |user| user[:email] == email}
 
-  def self.validate_email(email)
-    unless email =~ /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-      raise ArgumentError, "Invalid email format."
+      if existing_user
+        error.add(:email, "is already registered")
+        return false
+      end
+
+      hashed_password = BCrypt::Password.create(password)
+      
+      user_data = {
+        user_id: user_id,
+        name: name,
+        password_digest:hashed_password,
+        role:role,
+        introduction: introduction
+      }
+
+      users << user_data
+      Rails.cache.write('users', users)
+      true
+    else
+      false
     end
-  end
 
-  def self.validate_password(password)
-    if password.length < 6
-      raise ArgumentError, "Password must be at least 6 characters long."
-    end
-  end
-
-  def self.validate_role(role)
-    allowed_roles = ["student", "mentor"]
-    unless allowed_roles.include?(role)
-      raise ArgumentError, "Invalid role."
-    end
-  end
-
-  def self.validate_introduction(introduction)
-    if introduction.length > 500
-      raise ArgumentError, "Introduction cannot be longer than 500 characters."
-    end
-  end
 
 end
+
+
