@@ -17,6 +17,8 @@ class User
   validates :role, inclusion: { in: ROLES, message:"is not valid"}
   validates :introduction, length: {maximum:  500, message: "cannot be longer than 500 characters"}
 
+  private
+
   def create_user
 
     unless email_unique?
@@ -25,13 +27,12 @@ class User
     end
 
     if valid?
-      Rails.logger.debug "It is a new account"
-      self.user_id ||= SecureRandom.uuid 
-
+      Rails.logger.debug "It is a new user"
+      self.user_id = SecureRandom.uuid 
 
       hashed_password = BCrypt::Password.create(password)
 
-      user_data = {
+      new_user = {
         user_id: user_id,
         name: name,
         email: email,
@@ -40,17 +41,18 @@ class User
         introduction: introduction
       }
 
-      users = Rails.cache.read("users") || []
-      users << user_data
-      Rails.cache.write("users", users)
+      Rails.cache.fetch('users', defaut []) do |users|
+        users << new_user
+      end
       
-      user_data
+      return new_user
+      
     else
-      false
+
+      error.add(:base, "Invalid data. Cannot create user")
+      return false
     end
   end
-
-  private
 
   def email_unique?
     users = Rails.cache.read("users") || []

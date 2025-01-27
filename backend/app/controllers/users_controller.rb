@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_request, only: [:index, :show]
 
   #POST
   def create

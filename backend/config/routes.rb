@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   # user route
   resources :users, only: [:create, :index, :show]
 
-  #login route
+  # login route
   post '/login', to: 'session#create'
 
+  # fika requests routes
+  resources :users, only: [:create, :index, :show, :update]
 
   
 
