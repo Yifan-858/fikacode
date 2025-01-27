@@ -11,4 +11,13 @@ Rails.application.routes.draw do
   # healthcheck route
   get '/ping', to: 'ping#show', format: :json, as: :ping
 
+  # user route
+  resources :users, only: [:create, :index, :show]
+
+  #login route
+  post '/login', to: 'session#create'
+
+
+  
+
 end
