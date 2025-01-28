@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
 
   # fika requests routes
-  resources :fikas, only: [:create, :index, :show, :update]
+  resources :fikas, only: [:create, :index, :show]
 
   
 

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
     begin
       @decoded_token = JWT.decode(token, secret_key, true, { algorithm: 'HS256' })[0]
     rescue JWT::DecodeError => e
-      render json: { error: "Unauthorized: #{e.message}" }, status: :unauthorized
+      render json: { error: "Unauthorized: #{e.message}, You don't have the access to this action. Please try to login first" }, status: :unauthorized
     end
   end
 end

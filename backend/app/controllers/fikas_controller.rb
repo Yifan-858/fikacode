@@ -1,5 +1,6 @@
 class FikasController < ApplicationController
-  before_action :authenticate_request, only: [:index, :show, :update]
+  before_action :authenticate_request, only: [:create, :index, :show]
+  before_action :authorize_user_for_fika, only: [:show]
 
  #POST
  def create
@@ -24,7 +25,7 @@ class FikasController < ApplicationController
     render json: fikas, status: :ok
   end
 
-  #GET fika/:id
+  #GET /fika/:id
   def show
     fika_id = params[:id]
     fikas = Rails.cache.read('fikas') || []
@@ -40,7 +41,21 @@ class FikasController < ApplicationController
   private 
 
   def fika_params
-    params.require(:fika).permit(:status, :scheduled_at)
+    params.require(:fika).permit(:sender_id, :receiver_id, :status, :scheduled_at)
+  end
+
+  def authorize_user_for_fika
+    fika_id = params[:id]
+    fikas = Rails.cache.read('fikas') || []
+    fika = fikas.find { |fika| fika[:fika_id] == fika_id }
+
+    unless fika && (fika[:sender_id] == current_user.id || fika[:receiver_id] == current_user.id)
+      render json: { error: "Unauthorized access to this fika invitation" }, status: :unauthorized
+    end
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: @decoded_token['user_id'])
   end
 
 end

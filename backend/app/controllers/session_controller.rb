@@ -6,7 +6,6 @@ class SessionController < ApplicationController
     email = params[:email]
     password = params[:password]
 
-    # Fetch users from cache
     users = Rails.cache.read('users') || []
     user = users.find { |u| u[:email] == email }
 

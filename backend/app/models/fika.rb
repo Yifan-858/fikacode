@@ -13,13 +13,13 @@ class Fika
     self.status ="pending"
   end
 
-  validates :sender_id, :receiver_id, :status, presence: {message: "cannot be blank"}
+  validates :sender_id, :receiver_id, :scheduled_at, presence: {message: "cannot be blank"}
   validates :status, inclusion: { in: STATUS, message:"is not valid" }
   validate :sender_and_receriver_are_different
 
   def sender_and_receriver_are_different
     if sender_id === receiver_id
-      error.add(:receiver_id, "cannot be the same person")
+      errors.add(:receiver_id, "cannot be the same person")
     end
   end
 
@@ -45,9 +45,9 @@ class Fika
         scheduled_at: scheduled_at
       }
 
-      Rails.cache.fetch('fikas', default: []) do |fikas|
-        fikas << new_fika
-      end
+      fikas = Rails.cache.read('fikas') || []
+      fikas << new_fika
+      Rails.cache.write('fikas', fikas)
       
       return new_fika
 
