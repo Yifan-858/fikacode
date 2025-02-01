@@ -1,0 +1,85 @@
+{{#if this.showForm}}
+  <h2>Signup</h2>
+
+  <form {{on "submit" this.handleSignup}}>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      {{on "input" (fn this.updateField "name")}}
+      required
+    />
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      {{on "input" (fn this.updateField "email")}}
+      required
+    />
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      {{on "input" (fn this.updateField "password")}}
+      required
+    />
+    <fieldset>
+      <legend>Role:</legend>
+
+      <label>
+        <input
+          type="radio"
+          name="role"
+          value="mentor"
+          {{on "change" (fn this.updateField "role")}}
+          checked={{this.role}}
+        />
+        Mentor
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="role"
+          value="student"
+          {{on "change" (fn this.updateField "role")}}
+          checked={{this.role}}
+        />
+        Student
+      </label>
+
+    </fieldset>
+    <label for="introduction">Introduction:</label>
+    <textarea
+      id="introduction"
+      value={{this.introduction}}
+      {{on "change" (fn this.updateField "introduction")}}
+      rows="3"
+      cols="30"
+      maxlength="500"
+      required
+    />
+    <button type="submit">Sign Up</button>
+    {{#if this.submitError}}
+      <p style="color: red;">{{this.submitError}}</p>
+    {{/if}}
+    {{#if this.nameError}}
+      <span>{{this.nameError}}</span>
+    {{/if}}
+    {{#if this.emailError}}
+      <span>{{this.emailError}}</span>
+    {{/if}}
+    {{#if this.passwordError}}
+      <span>{{this.passwordError}}</span>
+    {{/if}}
+    {{#if this.roleError}}
+      <span>{{this.roleError}}</span>
+    {{/if}}
+    {{#if this.introductionError}}
+      <span>{{this.introductionError}}</span>
+    {{/if}}
+
+  </form>
+{{else}}
+  <p>{{this.successMessage}}</p>
+{{/if}}
