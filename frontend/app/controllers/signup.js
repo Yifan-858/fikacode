@@ -137,7 +137,7 @@ export default class SignupController extends Controller {
 
         setTimeout(() => {
           this.router.transitionTo('login');
-        }, 5000);
+        }, 3000);
       } else {
         if (data.errors) {
           this.submitError =

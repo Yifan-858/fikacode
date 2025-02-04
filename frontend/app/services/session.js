@@ -7,8 +7,36 @@ export default class SessionService extends Service {
   @tracked isAuthenticated = false;
   @tracked user = null;
 
+  constructor() {
+    super(...arguments);
+    this.checkAuthToken();
+  }
+
   get authToken() {
     return localStorage.getItem('auth_token');
+  }
+
+  checkAuthToken() {
+    const token = this.authToken;
+    if (token) {
+      this.isAuthenticated = true;
+      this.user = this.decodeToken(token);
+    }
+  }
+
+  decodeToken(token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return {
+        user_id: payload.user_id,
+        name: payload.name,
+        role: payload.role,
+        introduction: payload.introduction,
+      };
+    } catch (e) {
+      console.error('Failed to decode token:', e);
+      return null;
+    }
   }
 
   @action
@@ -23,7 +51,6 @@ export default class SessionService extends Service {
 
     const data = await response.json();
     if (response.ok) {
-      console.log('login success');
       this.isAuthenticated = true;
       this.user = data.user;
       localStorage.setItem('auth_token', data.token);

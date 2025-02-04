@@ -11,7 +11,7 @@ class SessionController < ApplicationController
 
     if user && authenticate_user(user, password)
       token = generate_jwt(user)
-      render json: { message: 'Login successful', token: token }, status: :ok
+      render json: { message: 'Login successful', token: token, user:{user_id:user[:user_id], name:user[:name], role:user[:role], introduction:user[:introduction]} }, status: :ok
     else
       render json: { message: 'Invalid email or password' }, status: :unauthorized
     end
@@ -26,10 +26,12 @@ class SessionController < ApplicationController
 
   # Generate a JWT for the user
   def generate_jwt(user)
+    
     payload = {
       user_id: user[:user_id],
-      email: user[:email],
+      name: user[:name],
       role: user[:role],
+      introduction: user[:introduction],
       exp: 24.hours.from_now.to_i
     }
     secret_key = Rails.application.credentials.jwt_secret 

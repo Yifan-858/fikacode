@@ -21,8 +21,10 @@ class UsersController < ApplicationController
 
   #GET
   def index
-    users = Rails.cache.read('users') || []
-    render json: users, status: :ok
+    # users = Rails.cache.read('users') || []
+    # render json: users, status: :ok
+    @users = User.all_users
+    render json: @users
   end
   
   #GET user/:id

@@ -2,6 +2,7 @@ require 'securerandom'
 require 'bcrypt' 
 require 'active_model'
 
+
 class User
   include ActiveModel::Model
   include ActiveModel::Validations 
@@ -57,6 +58,33 @@ class User
   def email_unique?
     users = Rails.cache.read("users") || []
     users.none? { |user| user[:email] == email }
+  end
+
+  def self.all_users
+      Rails.logger.debug "Cache before loading users: #{Rails.cache.read('users')}"
+    users = Rails.cache.read('users')
+
+    if users.nil? || users.empty?
+      users = load_users_from_json
+      Rails.cache.write('users', users)
+       Rails.logger.debug "Users loaded from JSON and written to cache: #{users}"
+    end
+      Rails.logger.debug "Users loaded from JSON and written to cache: #{users}"
+    users
+  end
+
+  # Method to load users from the users.json file
+  def self.load_users_from_json
+    json_file_path = Rails.root.join('db', 'users.json')
+    
+    if File.exist?(json_file_path)
+      json_data = File.read(json_file_path)
+      users = JSON.parse(json_data)
+      users
+    else
+      Rails.logger.debug "No users.json file found"
+      []
+    end
   end
 
 end

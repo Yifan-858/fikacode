@@ -12,4 +12,5 @@ Router.map(function () {
   this.route('login');
   this.route('signup');
   this.route('landing', { path: '/' });
+  this.route('dashboard');
 });

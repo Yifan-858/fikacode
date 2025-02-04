@@ -22,7 +22,7 @@ export default class LoginController extends Controller {
 
     try {
       await this.session.authenticate(this.email, this.password);
-      // this.router.transitionTo('user/:id');
+      this.router.transitionTo('/dashboard');
     } catch (error) {
       this.errorMessage = 'Invalid email or password';
     }
