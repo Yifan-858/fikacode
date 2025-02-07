@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
    
-      if user.create_user
+      if user.save
         render json: { message: "User created successfully", user: {
-          user_id: user.user_id,
+          id: user.id,
           name: user.name,
           email: user.email,
           role: user.role,
@@ -21,17 +21,15 @@ class UsersController < ApplicationController
 
   #GET
   def index
-    # users = Rails.cache.read('users') || []
-    # render json: users, status: :ok
-    @users = User.all_users
-    render json: @users
+    users = User.all
+    render json: users, status: :ok
+
   end
   
   #GET user/:id
   def show
-    user_id = params[:id]
-    users = Rails.cache.read('users') || []
-    user = users.find { |usr| usr[:user_id] == user_id}
+    id = params[:id]
+    User.find_by(id: params[:id])
 
     if user
       render json: user, status: :ok

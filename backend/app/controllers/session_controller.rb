@@ -6,32 +6,33 @@ class SessionController < ApplicationController
     email = params[:email]
     password = params[:password]
 
-    users = Rails.cache.read('users') || []
-    user = users.find { |u| u[:email] == email }
+    user = User.find_by(email: email)
 
-    if user && authenticate_user(user, password)
+    if user && user.authenticate(password)
       token = generate_jwt(user)
-      render json: { message: 'Login successful', token: token, user:{user_id:user[:user_id], name:user[:name], role:user[:role], introduction:user[:introduction]} }, status: :ok
+      render json: { 
+        message: 'Login successful', 
+        token: token, 
+        user:
+        {id:user.id, 
+        name:user.name, 
+        role:user.role, 
+        introduction:user.introduction} 
+      }, status: :ok
     else
       render json: { message: 'Invalid email or password' }, status: :unauthorized
     end
   end
 
   private
-
-  # Authenticate user by comparing the hashed password
-  def authenticate_user(user, password)
-    BCrypt::Password.new(user[:password_digest]) == password
-  end
-
   # Generate a JWT for the user
   def generate_jwt(user)
     
     payload = {
-      user_id: user[:user_id],
-      name: user[:name],
-      role: user[:role],
-      introduction: user[:introduction],
+      id: user.id,
+      name: user.name,
+      role: user.role,
+      introduction: user.introduction,
       exp: 24.hours.from_now.to_i
     }
     secret_key = Rails.application.credentials.jwt_secret 

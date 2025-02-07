@@ -28,7 +28,7 @@ export default class SessionService extends Service {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return {
-        user_id: payload.user_id,
+        id: payload.id,
         name: payload.name,
         role: payload.role,
         introduction: payload.introduction,
