@@ -120,15 +120,18 @@ export default class SignupController extends Controller {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          role: this.role,
-          introduction: this.introduction,
+          user: {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            role: this.role,
+            introduction: this.introduction,
+          },
         }),
       });
 
       const data = await response.json();
+      console.log('Response:', data);
 
       if (response.ok) {
         this.successMessage =

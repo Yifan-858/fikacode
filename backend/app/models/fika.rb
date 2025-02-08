@@ -1,11 +1,5 @@
-require 'securerandom'
-require 'active_model'
+class Fika < ApplicationRecord
 
-class Fika
-  include ActiveModel::Model
-  include ActiveModel::Validations 
-
-  attr_accessor :fika_id, :sender_id, :receiver_id, :status, :scheduled_at
   STATUS = ["pending","accepted","rejected"]
 
   def initialize(attributes = {})

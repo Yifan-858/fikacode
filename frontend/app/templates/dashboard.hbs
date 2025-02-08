@@ -1,5 +1,19 @@
-{{#let this.model as |user|}}
-  <h1>Hi, {{user.name}}!</h1>
-  <p>{{user.role}}</p>
-  <p>{{user.introduction}}</p>
-{{/let}}
+<h1>Hi, {{this.model.currentUser.name}}!</h1>
+<p>{{this.model.currentUser.role}}</p>
+<p>{{this.model.currentUser.introduction}}</p>
+
+<h3>Invite for a fika</h3>
+<ul>
+  {{#each this.model.otherUsers as |otherUsers|}}
+    <li>
+      <strong>{{otherUsers.name}}</strong>
+      ({{otherUsers.role}})
+      <button {{on "click" (fn this.sendFika otherUsers.id)}}>Fika</button>
+      <button
+        {{on "click" (fn this.viewProfile otherUsers.id)}}
+      >Profile</button>
+    </li>
+  {{else}}
+    <p>No one is available just now.</p>
+  {{/each}}
+</ul>

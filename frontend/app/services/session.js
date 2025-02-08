@@ -7,6 +7,7 @@ export default class SessionService extends Service {
   @tracked isAuthenticated = false;
   @tracked user = null;
 
+  // keep the user logged in after refresh
   constructor() {
     super(...arguments);
     this.checkAuthToken();
@@ -38,6 +39,7 @@ export default class SessionService extends Service {
       return null;
     }
   }
+  //
 
   @action
   async authenticate(email, password) {

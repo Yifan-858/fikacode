@@ -1,8 +1,3 @@
-require 'securerandom'
-require 'bcrypt' 
-require 'active_model'
-
-
 class User < ApplicationRecord
  has_secure_password
 
