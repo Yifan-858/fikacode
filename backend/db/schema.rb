@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_21_144152) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_194508) do
+  create_table "fikas", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "receiver_id", null: false
+    t.string "status", default: "pending"
+    t.datetime "scheduled_at", null: false
+    t.string "fika_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fika_id"], name: "index_fikas_on_fika_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
