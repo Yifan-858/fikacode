@@ -1,8 +1,8 @@
 class FikasController < ApplicationController
-  before_action :authenticate_request, only: [:create, :index, :show]
-  before_action :authorize_user_for_fika, only: [:show]
+  before_action :authenticate_request, only: [:create, :index, :show, :update_status] #require Authorization in the header
+  before_action :authorize_user_for_fika, only: [:show, :update_status]
 
-  #POST
+  #POST /fikas
   def create
     fika =Fika.new(fika_params)
  
@@ -19,7 +19,7 @@ class FikasController < ApplicationController
     end
   end
 
-  #GET
+  #GET /fikas
   def index
     fikas = Fika.where(sender_id: current_user.id).or(Fika.where(receiver_id: current_user.id))
     render json: fikas, status: :ok
@@ -33,6 +33,22 @@ class FikasController < ApplicationController
       render json: fika, status: :ok
     else
       render json: {error: "Fika not found"}, status: :not_found
+    end
+  end
+
+  #Patch /fikas/:id/update_status
+  def update_status
+    fika = Fika.find_by(fika_id: params[:id])
+
+    if fika.nil?
+      render json:{ error: "Fika not found"}, status: :not_found
+      return
+    end
+
+    if fika.update(status: params[:status])
+      render json:{ message: "Fika updated successfully", fika:fika}, status: :ok
+    else
+      render json:{ message: "Failed to update Fika", error: fika.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

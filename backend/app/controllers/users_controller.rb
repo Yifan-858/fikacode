@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_request, only: [:index, :show]
 
-  #POST
+  #POST /users
   def create
     user = User.new(user_params)
    
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       end
   end
 
-  #GET
+  #GET /users
   def index
     users = User.all
     render json: users, status: :ok
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
   
   private 
-  
+
   #strong parameters
   def user_params
     params.require(:user).permit(:name, :email, :password, :role, :introduction)

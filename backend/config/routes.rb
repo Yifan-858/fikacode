@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # fika requests routes
   resources :fikas, only: [:create, :index, :show]
 
-  
+  # fika status only update route
+  patch '/fikas/:id/update_status', to: 'fikas#update_status'
 
 end
