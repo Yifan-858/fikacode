@@ -3,8 +3,10 @@ import { inject as service } from '@ember/service';
 import ENV from '../config/environment';
 
 export default class DashboardRoute extends Route {
-  @service session;
   @service router;
+  @service session;
+  @service fika;
+  @service community;
 
   beforeModel() {
     if (!this.session.isAuthenticated) {
@@ -13,27 +15,22 @@ export default class DashboardRoute extends Route {
   }
 
   async model() {
-    // return this.session.user;
     try {
-      const response = await fetch(`${ENV.apihost}/users`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${this.session.authToken}`,
-        },
-      });
-      const users = await response.json();
-
-      const otherUsers = users.filter(
-        (user) => user.id !== this.session.user.id,
-      );
+      const [community, sentFikas, receivedFikas] = await Promise.all([
+        this.community.getCommunity(),
+        this.fika.getSentFikas(),
+        this.fika.getReceivedFikas(),
+      ]);
 
       return {
         currentUser: this.session.user,
-        otherUsers: otherUsers,
+        otherUsers: community,
+        sentFikas: sentFikas,
+        receivedFikas: receivedFikas,
       };
     } catch (error) {
-      console.error('Error fetching users', error);
-      return [];
+      console.error('Error fetching data for dashboard:', error);
+      return {};
     }
   }
 }

@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   #GET /users
   def index
     users = User.all
+    # get the users except the logged-in user
+    users = users.where.not(id: current_user.id) if params[:exclude_current] == "true"
+
     render json: users, status: :ok
   end
   

@@ -1,0 +1,9 @@
+<ul>
+  {{#each @fikas as |fika|}}
+    <li>{{fika.receiver_id}}
+      -
+      {{fika.status}}
+      (Scheduled at:
+      {{fika.scheduled_at}})</li>
+  {{/each}}
+</ul>

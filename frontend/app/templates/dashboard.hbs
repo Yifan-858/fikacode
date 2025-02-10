@@ -2,18 +2,11 @@
 <p>{{this.model.currentUser.role}}</p>
 <p>{{this.model.currentUser.introduction}}</p>
 
-<h3>Invite for a fika</h3>
-<ul>
-  {{#each this.model.otherUsers as |otherUsers|}}
-    <li>
-      <strong>{{otherUsers.name}}</strong>
-      ({{otherUsers.role}})
-      <button {{on "click" (fn this.sendFika otherUsers.id)}}>Fika</button>
-      <button
-        {{on "click" (fn this.viewProfile otherUsers.id)}}
-      >Profile</button>
-    </li>
-  {{else}}
-    <p>No one is available just now.</p>
-  {{/each}}
-</ul>
+<h3>Your Community</h3>
+<CommunityList @otherUsers={{this.model.otherUsers}} />
+
+<h3>Sent Fikas</h3>
+<FikaList @fikas={{this.model.sentFikas}} />
+
+<h3>Received Fikas</h3>
+<FikaList @fikas={{this.model.receivedFikas}} />

@@ -20,8 +20,19 @@ class FikasController < ApplicationController
   end
 
   #GET /fikas
+
   def index
-    fikas = Fika.where(sender_id: current_user.id).or(Fika.where(receiver_id: current_user.id))
+    # fetch fikas sent by the user
+    if params[:sender_id].present?
+      fikas = Fika.where(sender_id: params[:sender_id])
+    # fetch fikas received by the user
+    elsif params[:receiver_id].present?
+      fikas = Fika.where(receiver_id: params[:receiver_id])
+    #fetch all the fikas the user is involved 
+    else
+      fikas = Fika.where(sender_id: current_user.id).or(Fika.where(receiver_id: current_user.id))
+    end
+
     render json: fikas, status: :ok
   end
 

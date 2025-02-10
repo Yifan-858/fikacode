@@ -1,0 +1,16 @@
+<ul>
+  {{#each @otherUsers as |otherUser|}}
+    <li>
+      <strong>{{otherUser.name}}</strong>
+      ({{otherUser.role}})
+      <button
+        type="button"
+        {{on "click" (fn this.sendFika otherUser.id)}}
+      >Fika</button>
+      <button
+        type="button"
+        {{on "click" (fn this.viewProfile otherUser.id)}}
+      >Profile</button>
+    </li>
+  {{/each}}
+</ul>
