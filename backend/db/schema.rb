@@ -13,7 +13,9 @@
 ActiveRecord::Schema[8.0].define(version: 2025_02_08_194508) do
   create_table "fikas", force: :cascade do |t|
     t.integer "sender_id", null: false
+    t.string "sender_name", null: false
     t.integer "receiver_id", null: false
+    t.string "receiver_name", null: false
     t.string "status", default: "pending"
     t.datetime "scheduled_at", null: false
     t.string "fika_id", null: false

@@ -4,12 +4,27 @@ class FikasController < ApplicationController
 
   #POST /fikas
   def create
-    fika =Fika.new(fika_params)
+
+    sender = User.find_by(id: fika_params[:sender_id])
+    receiver = User.find_by(id: fika_params[:receiver_id])
+
+    if sender.nil? || receiver.nil?
+      render json: { message: "Sender or receiver not found" }, status: :unprocessable_entity
+      return
+    end
+
+    fika =Fika.new(fika_params.merge(
+      sender_name: sender.name,
+      receiver_name: receiver.name
+    ))
+  
  
     if fika.save
       render json: { message: "Fika invitation created successfully", fika: {
         sender_id: fika.sender_id,
+        sender_name: fika.sender_name,
         receiver_id: fika.receiver_id, 
+        receiver_name: fika.receiver_name, 
         status: fika.status,
         scheduled_at: fika.scheduled_at,
         fika_id: fika.fika_id,
