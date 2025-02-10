@@ -1,16 +1,13 @@
 <ul>
   {{#each @otherUsers as |otherUser|}}
     <li>
-      <strong>{{otherUser.name}}</strong>
-      ({{otherUser.role}})
-      <button
-        type="button"
-        {{on "click" (fn this.sendFika otherUser.id)}}
-      >Fika</button>
-      <button
-        type="button"
-        {{on "click" (fn this.viewProfile otherUser.id)}}
-      >Profile</button>
+      <h4>{{otherUser.name}}</h4>
+      <h5>{{otherUser.role}}</h5>
+      <p>{{otherUser.introduction}}</p>
+      <FikaButton
+        @receiverName={{otherUser.name}}
+        @receiverId={{otherUser.id}}
+      />
     </li>
   {{/each}}
 </ul>

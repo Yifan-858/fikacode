@@ -40,4 +40,31 @@ export default class FikaService extends Service {
       return [];
     }
   }
+
+  async sendFika(receiverId, scheduledAt) {
+    try {
+      const response = await fetch(`${ENV.apihost}/fikas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.session.authToken}`,
+        },
+        body: JSON.stringify({
+          sender_id: this.session.user.id,
+          receiver_id: receiverId,
+          status: 'pending',
+          scheduled_at: scheduledAt,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create Fika');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error creating Fika', error);
+      throw error;
+    }
+  }
 }

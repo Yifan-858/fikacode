@@ -1,12 +1,16 @@
 <h1>Hi, {{this.model.currentUser.name}}!</h1>
-<p>{{this.model.currentUser.role}}</p>
-<p>{{this.model.currentUser.introduction}}</p>
+<section>
+  <p>{{this.model.currentUser.role}}</p>
+  <p>{{this.model.currentUser.introduction}}</p>
+</section>
 
-<h3>Your Community</h3>
-<CommunityList @otherUsers={{this.model.otherUsers}} />
+<h2>Service</h2>
 
-<h3>Sent Fikas</h3>
+<h3>Sent fikas</h3>
 <FikaList @fikas={{this.model.sentFikas}} />
 
-<h3>Received Fikas</h3>
+<h3>Received fikas</h3>
 <FikaList @fikas={{this.model.receivedFikas}} />
+
+<h3>Invite for a fika</h3>
+<CommunityList @otherUsers={{this.model.otherUsers}} />
