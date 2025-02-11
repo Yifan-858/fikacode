@@ -1,24 +1,10 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 import ENV from '../config/environment';
 
 export default class FikaService extends Service {
   @service session;
-
-  @tracked fikas = [];
-
-  //comnine sent and received fikas
-  async loadFikas() {
-    try {
-      const sentFikas = await this.getSentFikas();
-      const receivedFikas = await this.getReceivedFikas();
-
-      this.fikas = [...sentFikas, ...receivedFikas];
-    } catch (error) {
-      console.error('Error loading fikas:', error);
-    }
-  }
+  @service notification;
 
   async getSentFikas() {
     try {
@@ -75,7 +61,8 @@ export default class FikaService extends Service {
       if (!response.ok) {
         throw new Error('Failed to create fika');
       }
-      window.location.reload();
+
+      this.notification.show('Fika invitation sent successfully!');
 
       return await response.json();
     } catch (error) {
@@ -102,12 +89,9 @@ export default class FikaService extends Service {
         throw new Error('Failed to update fika status');
       }
 
-      const updatedFika = await response.json();
+      this.notification.show('Fika status updated successfully!');
 
-      await this.loadFikas();
-      window.location.reload();
-
-      return updatedFika;
+      return await response.json();
     } catch (error) {
       console.error('Error updating fika status:', error);
       throw error;
