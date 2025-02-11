@@ -7,10 +7,10 @@
 <h2>Service</h2>
 
 <h3>Sent fikas</h3>
-<FikaList @fikas={{this.model.sentFikas}} />
+<FikaList @fikas={{this.model.sentFikas}} @isSentFikas={{true}} />
 
 <h3>Received fikas</h3>
-<FikaList @fikas={{this.model.receivedFikas}} />
+<FikaList @fikas={{this.model.receivedFikas}} @isSentFikas={{false}} />
 
 <h3>Invite for a fika</h3>
 <CommunityList @otherUsers={{this.model.otherUsers}} />

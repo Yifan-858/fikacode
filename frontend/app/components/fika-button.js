@@ -10,6 +10,10 @@ export default class FikaButtonComponent extends Component {
   @tracked scheduledAt = '';
   @tracked errorMessage = '';
 
+  get receiverId() {
+    return this.args.receiverId;
+  }
+
   @action
   openFikaForm() {
     this.isFikaFormOpen = true;
@@ -22,6 +26,7 @@ export default class FikaButtonComponent extends Component {
 
   @action
   updateScheduledAt(event) {
+    console.log('Scheduled Time Updated:', event.target.value);
     this.scheduledAt = event.target.value;
   }
 
@@ -33,8 +38,10 @@ export default class FikaButtonComponent extends Component {
     }
 
     try {
+      console.log('Sending Fika to:', this.receiverId, 'At:', this.scheduledAt);
       await this.fika.sendFika(this.args.receiverId, this.scheduledAt);
       this.closeFikaForm();
+      this.errorMessage = '';
     } catch (error) {
       console.error('Failed to send Fika:', error);
     }

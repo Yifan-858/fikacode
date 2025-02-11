@@ -2,7 +2,7 @@ require 'securerandom'
 
 class Fika < ApplicationRecord
 
-  STATUS = ["pending","accepted","rejected"]
+  STATUS = ["pending","accepted","declined"]
 
   before_validation :set_sender_and_receiver_names
   before_create :generate_fika_id
