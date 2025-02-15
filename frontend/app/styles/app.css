@@ -1,4 +1,24 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap");
+
+@import "landing.css";
+
+:root {
+  --main-color: #4e2d0b;
+  --sub-color: #f5e9a2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", serif;
+  color: var(--main-color);
+}
+
 .notification-popup {
   position: fixed;
   bottom: 20px;

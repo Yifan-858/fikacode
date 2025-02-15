@@ -1,9 +1,19 @@
-<h2>Welcome to Fika App</h2>
-<p>Sign up or log in to see other users and send fika invitations.</p>
-<LinkTo @route="login">
-  <button type="button">Log in</button>
-</LinkTo>
-<LinkTo @route="signup">
-  <button type="button">Sign up</button>
-</LinkTo>
+<div class="landing-page">
+  <h2 class="landing-title">Let's fika!</h2>
+
+  <img
+    src="/assets/images/animated-coffee.gif"
+    alt="Animated coffee"
+    class="coffee-animation"
+  />
+
+  <p class="landing-slogan">A community for learning coding and having a fika
+    together</p>
+  <div class="landing-button">
+    <LinkTo @route="login" class="login-button">Log in
+    </LinkTo>
+    <LinkTo @route="signup" class="signup-button">Sign up
+    </LinkTo>
+  </div>
+</div>
 {{outlet}}

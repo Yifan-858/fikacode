@@ -1,0 +1,67 @@
+.landing-page {
+  background-image: url("/assets/images/backgraound.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 3rem;
+  margin: 12rem 0 5rem 0;
+}
+
+.coffee-animation {
+  width: 10%;
+  height: auto;
+  margin: 2rem 8rem 0 8rem;
+}
+
+.landing-slogan {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 3rem;
+}
+
+.landing-button {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.login-button,
+.signup-button {
+  cursor: pointer;
+
+  padding: 1rem 2rem;
+
+  border: 3px solid var(--main-color);
+  background: var(--sub-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+
+  text-decoration: none;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--main-color);
+  transition: all 0.2s ease;
+}
+
+.login-button:hover,
+.signup-button:hover {
+  color: var(--sub-color);
+  background: var(--main-color);
+}
+
+.login-button:active,
+.signup-button:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
+}
