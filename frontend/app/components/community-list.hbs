@@ -1,13 +1,23 @@
-<ul>
+<ul class="community-list-container">
   {{#each @otherUsers as |otherUser|}}
-    <li>
-      <h4>{{otherUser.name}}</h4>
-      <h5>{{otherUser.role}}</h5>
-      <p>{{otherUser.introduction}}</p>
-      <FikaButton
-        @receiverName={{otherUser.name}}
-        @receiverId={{otherUser.id}}
-      />
+    <li class="community-card">
+
+      <h4 class="user-name">{{otherUser.name}}</h4>
+      <h5
+        class={{if
+          (eq otherUser.role "student")
+          "user-role student"
+          "user-role mentor"
+        }}
+      >{{otherUser.role}}</h5>
+
+      <p class="user-introduction">{{otherUser.introduction}}</p>
+      <div class="fika-button-container">
+        <FikaButton
+          @receiverName={{otherUser.name}}
+          @receiverId={{otherUser.id}}
+        />
+      </div>
     </li>
   {{/each}}
 </ul>

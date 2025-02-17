@@ -1,0 +1,100 @@
+.signup-background {
+  background-image: url("/assets/images/backgraound.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+
+  width: 30%;
+  height: auto;
+
+  border: 3px solid var(--main-color);
+  background: var(--sub-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+}
+
+.signup-title {
+  margin-top: 3rem;
+}
+
+.signup-form {
+  margin: 0 5rem 3rem 5rem;
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  gap: 1rem;
+}
+
+.signup-role-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.signpu-role-radio {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.role-radio-label {
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.role-radio-input {
+  width: 15%;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  background-color: var(--main-color);
+}
+
+.signup-introduction-label {
+  text-align: left;
+}
+
+.signup-introduction-label textarea {
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  border: 2px solid var(--main-color);
+  background: var(--light-color);
+}
+
+.signup-introduction-character {
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.signup-success-message {
+  font-size: 1.2rem;
+  margin: 1rem;
+}

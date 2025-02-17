@@ -2,10 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap");
 
 @import "landing.css";
+@import "login.css";
+@import "signup.css";
+@import "dashboard.css";
+@import "fika-list.css";
+@import "community-list.css";
+@import "fika-button.css";
 
 :root {
   --main-color: #4e2d0b;
   --sub-color: #f5e9a2;
+  --light-color: #fcf6ce;
+  --dashboard-color: #fbf2b8;
+  --student-role-color: #f6c01c;
+  --mentor-role-color: #27e1bb;
+  --main-font: "Nunito", serif;
 }
 
 * {
@@ -15,8 +26,84 @@
 }
 
 body {
-  font-family: "Nunito", serif;
+  font-family: var(--main-font);
   color: var(--main-color);
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+input {
+  font-size: 1rem;
+  outline: none;
+  height: 2rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--main-color);
+  background: var(--light-color);
+}
+
+fieldset {
+  all: unset;
+}
+
+legend {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+li {
+  list-style: none;
+}
+
+.background {
+  background-image: url("/assets/images/backgraound.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.student {
+  background: var(--student-role-color);
+}
+.mentor {
+  background: var(--mentor-role-color);
+}
+
+.submit-button {
+  cursor: pointer;
+  font-family: var(--main-font);
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+
+  border: 2px solid var(--main-color);
+  background: var(--sub-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+
+  text-decoration: none;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--main-color);
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  color: var(--sub-color);
+  background: var(--main-color);
+}
+
+.submit-button:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
 }
 
 .notification-popup {

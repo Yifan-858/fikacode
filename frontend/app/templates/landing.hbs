@@ -1,19 +1,21 @@
-<div class="landing-page">
-  <h2 class="landing-title">Let's fika!</h2>
+<div class="background">
+  <div class="landing-content">
+    <h2 class="landing-title">Let's fika!</h2>
 
-  <img
-    src="/assets/images/animated-coffee.gif"
-    alt="Animated coffee"
-    class="coffee-animation"
-  />
+    <img
+      src="/assets/images/animated-coffee.gif"
+      alt="Animated coffee"
+      class="coffee-animation"
+    />
 
-  <p class="landing-slogan">A community for learning coding and having a fika
-    together</p>
-  <div class="landing-button">
-    <LinkTo @route="login" class="login-button">Log in
-    </LinkTo>
-    <LinkTo @route="signup" class="signup-button">Sign up
-    </LinkTo>
+    <p class="landing-slogan">A community for learning coding and having a fika
+      together</p>
+    <div class="landing-button">
+      <LinkTo @route="login" class="login-button">Log in
+      </LinkTo>
+      <LinkTo @route="signup" class="signup-button">Sign up
+      </LinkTo>
+    </div>
   </div>
 </div>
 {{outlet}}

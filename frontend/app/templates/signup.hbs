@@ -1,85 +1,99 @@
-{{#if this.showForm}}
-  <h2>Signup</h2>
+<div class="background">
+  <div class="signup-container">
+    {{#if this.showForm}}
 
-  <form {{on "submit" this.handleSignup}}>
-    <label for="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      {{on "input" (fn this.updateField "name")}}
-      required
-    />
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      {{on "input" (fn this.updateField "email")}}
-      required
-    />
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      id="password"
-      {{on "input" (fn this.updateField "password")}}
-      required
-    />
-    <fieldset>
-      <legend>Role:</legend>
+      <h2 class="signup-title">Signup</h2>
 
-      <label>
+      <form {{on "submit" this.handleSignup}} class="signup-form">
+        <label for="name">Name:</label>
         <input
-          type="radio"
-          name="role"
-          value="mentor"
-          {{on "change" (fn this.updateField "role")}}
-          checked={{this.role}}
+          class="signup-input"
+          type="text"
+          id="name"
+          {{on "input" (fn this.updateField "name")}}
+          required
         />
-        Mentor
-      </label>
-
-      <label>
+        <label for="email">Email:</label>
         <input
-          type="radio"
-          name="role"
-          value="student"
-          {{on "change" (fn this.updateField "role")}}
-          checked={{this.role}}
+          class="signup-input"
+          type="email"
+          id="email"
+          {{on "input" (fn this.updateField "email")}}
+          required
         />
-        Student
-      </label>
+        <label for="password">Password:</label>
+        <input
+          class="signup-input"
+          type="password"
+          id="password"
+          {{on "input" (fn this.updateField "password")}}
+          required
+        />
+        <fieldset class="signup-role-container">
+          <legend>Role:</legend>
+          <div class="signpu-role-radio">
+            <label class="role-radio-label">
+              <input
+                class="role-radio-input"
+                type="radio"
+                name="role"
+                value="mentor"
+                {{on "change" (fn this.updateField "role")}}
+                checked={{this.role}}
+              />
+              Mentor
+            </label>
 
-    </fieldset>
-    <label for="introduction">Introduction:</label>
-    <textarea
-      id="introduction"
-      value={{this.introduction}}
-      {{on "change" (fn this.updateField "introduction")}}
-      rows="3"
-      cols="30"
-      maxlength="500"
-      required
-    />
-    <button type="submit">Sign Up</button>
-    {{#if this.submitError}}
-      <p style="color: red;">{{this.submitError}}</p>
-    {{/if}}
-    {{#if this.nameError}}
-      <span>{{this.nameError}}</span>
-    {{/if}}
-    {{#if this.emailError}}
-      <span>{{this.emailError}}</span>
-    {{/if}}
-    {{#if this.passwordError}}
-      <span>{{this.passwordError}}</span>
-    {{/if}}
-    {{#if this.roleError}}
-      <span>{{this.roleError}}</span>
-    {{/if}}
-    {{#if this.introductionError}}
-      <span>{{this.introductionError}}</span>
-    {{/if}}
+            <label class="role-radio-label">
+              <input
+                class="role-radio-input"
+                type="radio"
+                name="role"
+                value="student"
+                {{on "change" (fn this.updateField "role")}}
+                checked={{this.role}}
+              />
+              Student
+            </label>
+          </div>
+        </fieldset>
+        <label class="signup-introduction-label">Introduction:
+          <textarea
+            value={{this.introduction}}
+            {{on "input" (fn this.updateField "introduction")}}
+            rows="5"
+            cols="30"
+            maxlength="500"
+            required
+          />
+          <p
+            class="signup-introduction-character"
+          >{{this.introduction.length}}/500 characters</p>
 
-  </form>
-{{else}}
-  <p>{{this.successMessage}}</p>
-{{/if}}
+        </label>
+        <button type="submit" class="submit-button">Sign Up</button>
+        {{#if this.submitError}}
+          <p style="color: red;">{{this.submitError}}</p>
+        {{/if}}
+        {{#if this.nameError}}
+          <span>{{this.nameError}}</span>
+        {{/if}}
+        {{#if this.emailError}}
+          <span>{{this.emailError}}</span>
+        {{/if}}
+        {{#if this.passwordError}}
+          <span>{{this.passwordError}}</span>
+        {{/if}}
+        {{#if this.roleError}}
+          <span>{{this.roleError}}</span>
+        {{/if}}
+        {{#if this.introductionError}}
+          <span>{{this.introductionError}}</span>
+        {{/if}}
+
+      </form>
+    {{else}}
+      <p class="signup-success-message">{{this.successMessage}}</p>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,38 @@
+.fika-button {
+  cursor: pointer;
+  border-style: none;
+  color: var(--dashboard-color);
+  background: var(--main-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.fika-button:hover {
+  transform: translateX(-2px) translateY(-2px);
+  box-shadow: 2.5px 2.5px 0px 0px var(--student-role-color);
+}
+
+.fika-button:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: -2.5px -2.5px 0px 0px var(--mentor-role-color);
+}
+
+.invitation-form-container {
+  margin: 1rem auto;
+  border-top: 1px dashed var(--main-color);
+}
+
+.invitation-form {
+  margin: 0.5rem auto;
+}
+
+.scheduel-label {
+  font-size: 1rem;
+}
+
+.scheduel-input {
+  margin: 0.5rem auto;
+}

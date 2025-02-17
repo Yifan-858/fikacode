@@ -1,0 +1,37 @@
+.community-list-container {
+  margin-top: 1rem;
+}
+
+.community-card {
+  border: 3px solid var(--main-color);
+  background: var(--dashboard-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.user-name {
+  font-size: 2rem;
+}
+
+.user-role {
+  border-radius: 32px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.user-introduction {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.fika-button-container {
+  margin: 0 auto;
+}

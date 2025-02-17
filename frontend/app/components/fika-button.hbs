@@ -1,26 +1,32 @@
-<div>
-  <button type="button" {{on "click" this.openFikaForm}}>
+{{#if this.isFikaFormOpen}}
+  <div class="invitation-form-container">
+    <div class="invitation-form">
+      <h2>Send a Fika Invitation</h2>
+      <label class="scheduel-label" for="scheduledAt">Schedule Time:</label>
+      <input
+        class="scheduel-input"
+        type="datetime-local"
+        id="scheduledAt"
+        {{on "input" this.updateScheduledAt}}
+      />
+      {{#if this.errorMessage}}
+        <span>{{this.errorMessage}}</span>
+      {{/if}}
+
+      <button
+        class="submit-button"
+        type="button"
+        {{on "click" this.submitFika}}
+      >Send</button>
+      <button
+        class="submit-button"
+        type="button"
+        {{on "click" this.closeFikaForm}}
+      >Cancel</button>
+    </div>
+  </div>
+{{else}}
+  <button type="button" {{on "click" this.openFikaForm}} class="fika-button">
     Fika
   </button>
-
-  {{#if this.isFikaFormOpen}}
-    <div class="modal-overlay">
-      <div class="modal-content">
-        <h2>Send a Fika Invitation</h2>
-        <h3>To: {{@receiverName}}</h3>
-        <label for="scheduledAt">Schedule Time:</label>
-        <input
-          type="datetime-local"
-          id="scheduledAt"
-          {{on "input" this.updateScheduledAt}}
-        />
-        {{#if this.errorMessage}}
-          <span>{{this.errorMessage}}</span>
-        {{/if}}
-
-        <button type="button" {{on "click" this.submitFika}}>Send</button>
-        <button type="button" {{on "click" this.closeFikaForm}}>Cancel</button>
-      </div>
-    </div>
-  {{/if}}
-</div>
+{{/if}}

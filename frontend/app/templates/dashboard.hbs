@@ -1,16 +1,68 @@
-<h1>Hi, {{this.model.currentUser.name}}!</h1>
-<section>
-  <p>{{this.model.currentUser.role}}</p>
-  <p>{{this.model.currentUser.introduction}}</p>
-</section>
+<div class="background dashboard-background" id="dashboard-background">
+  <div class="dashboard-content">
 
-<h2>Service</h2>
+    <section class="dashboard-user-profile">
+      <img
+        src="/assets/images/coffee-icon.png"
+        alt="user avatar"
+        class="dashboard-user-avatar"
+      />
+      <div class="dashboard-user-info">
+        <h1 class="dashboard-user-name">Hi,
+          {{this.model.currentUser.name}}!</h1>
 
-<h3>Sent fikas</h3>
-<FikaList @fikas={{this.model.sentFikas}} @isSentFikas={{true}} />
+        <p
+          class={{if
+            (eq this.model.currentUser.role "student")
+            "dashboard-user-role student"
+            "dashboard-user-role mentor"
+          }}
+        >{{this.model.currentUser.role}}</p>
+        <p
+          class="dashboard-user-introduction"
+        >{{this.model.currentUser.introduction}}</p>
+      </div>
+    </section>
 
-<h3>Received fikas</h3>
-<FikaList @fikas={{this.model.receivedFikas}} @isSentFikas={{false}} />
+    <section class="all-services">
+      <div class="services-container">
 
-<h3>Invite for a fika</h3>
-<CommunityList @otherUsers={{this.model.otherUsers}} />
+        <img
+          src="/assets/images/sent.png"
+          alt="sent fika"
+          class="services-icon"
+        />
+
+        <h3 class="services-name">Sent</h3>
+        <FikaList @fikas={{this.model.sentFikas}} @isSentFikas={{true}} />
+      </div>
+      <div class="services-container">
+
+        <img
+          src="/assets/images/received.png"
+          alt="received fika"
+          class="services-icon"
+        />
+
+        <h3 class="services-name">Received</h3>
+        <FikaList @fikas={{this.model.receivedFikas}} @isSentFikas={{false}} />
+      </div>
+      <div class="services-container">
+
+        <img
+          src="/assets/images/calender.png"
+          alt="calender"
+          class="services-icon"
+        />
+
+        <h3 class="services-name">Calender</h3>
+      </div>
+    </section>
+
+    <section class="community">
+      <h3 class="community-title">Your Community</h3>
+      <h4 class="community-subtitle">Invite for a fika</h4>
+      <CommunityList @otherUsers={{this.model.otherUsers}} />
+    </section>
+  </div>
+</div>

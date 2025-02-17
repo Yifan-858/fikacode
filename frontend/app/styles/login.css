@@ -1,0 +1,36 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 5rem;
+  gap: 2rem;
+
+  border: 3px solid var(--main-color);
+  background: var(--sub-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  gap: 1rem;
+}
+
+.email-container,
+.password-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
