@@ -176,6 +176,7 @@ GEM
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
     psych (5.2.3)
       date
       stringio
@@ -331,6 +332,7 @@ DEPENDENCIES
   dotenv-rails
   jwt
   kamal
+  pg
   puma (>= 5.0)
   rack-cors
   rails (~> 8.0.0)
