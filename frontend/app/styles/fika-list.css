@@ -1,5 +1,51 @@
 .fika-list-container {
+  margin-top: 1rem;
 }
 
 .fika-card {
+  border: 3px solid var(--main-color);
+  background: var(--dashboard-color);
+  box-shadow: 2.5px 2.5px 0px 0px var(--main-color);
+
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.schedule-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.schedule-date {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.fika-status-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fika-status-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.fika-status-img {
+  height: 2.5rem;
+  margin-right: 5px;
+}
+
+.fika-status {
+  font-size: 1.2rem;
+  font-weight: 800;
 }

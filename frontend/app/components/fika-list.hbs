@@ -1,23 +1,51 @@
 <ul class="fika-list-container">
   {{#each @fikas as |fika|}}
     <li class="fika-card">
-      {{#if @isSentFikas}}
-        <h4>{{fika.receiver_name}}</h4>
-      {{else}}
-        <h4>{{fika.sender_name}}</h4>
-      {{/if}}
+      <div class="fika-info">
+        {{#if @isSentFikas}}
+          <h4 class="user-name">{{fika.receiver_name}}</h4>
+        {{else}}
+          <h4 class="user-name">{{fika.sender_name}}</h4>
+        {{/if}}
 
-      <div>
-        <h5>Scheduled at:</h5>
-        <p>{{moment-format fika.scheduled_at "MM-DD-YYYY"}}</p>
-        <p>{{moment-from-now fika.scheduled_at}}</p>
+        <div>
+          <h5 class="schedule-label">Scheduled at:</h5>
+          <p class="schedule-date">{{moment-format
+              fika.scheduled_at
+              "MM-DD-YYYY"
+            }}
+            (
+            {{moment-from-now fika.scheduled_at}}
+            )</p>
+
+        </div>
       </div>
+      <div class="fika-status-container">
+        <div class="fika-status-display">
+          <img
+            class="fika-status-img"
+            src={{if
+              (eq fika.status "pending")
+              "/assets/images/pending.png"
+              (if
+                (eq fika.status "accepted")
+                "/assets/images/accepted.png"
+                "/assets/images/declined.png"
+              )
+            }}
+            alt="fika status image"
+          />
+          <p class="fika-status">{{fika.status}}</p>
+        </div>
 
-      <p>{{fika.status}}</p>
-
-      {{#unless @isSentFikas}}
-        <StatusButton @fikaId={{fika.fika_id}} @fikaStatus={{fika.status}} />
-      {{/unless}}
+        {{#unless @isSentFikas}}
+          <div class="fika-status-button-container">
+            <StatusButton
+              @fikaId={{fika.fika_id}}
+              @fikaStatus={{fika.status}}
+            /></div>
+        {{/unless}}
+      </div>
 
     </li>
   {{/each}}

@@ -8,7 +8,7 @@ export default class NotificationService extends Service {
   show(message) {
     this.message = message;
     this.isVisible = true;
-    console.log('notification!!!!');
+
     setTimeout(() => {
       this.isVisible = false;
       this.message = null;

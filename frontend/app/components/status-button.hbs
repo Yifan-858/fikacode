@@ -1,8 +1,16 @@
 <div>
-  <button type="button" {{on "click" (fn this.updateFikaStatus "accepted")}}>
+  <button
+    class="submit-button"
+    type="button"
+    {{on "click" (fn this.updateFikaStatus "accepted")}}
+  >
     Accept
   </button>
-  <button type="button" {{on "click" (fn this.updateFikaStatus "declined")}}>
+  <button
+    class="submit-button"
+    type="button"
+    {{on "click" (fn this.updateFikaStatus "declined")}}
+  >
     Decline
   </button>
 </div>

@@ -30,22 +30,38 @@
         <img
           src="/assets/images/sent.png"
           alt="sent fika"
-          class="services-icon"
+          class={{if
+            this.isSentFikaListVisible
+            "clicked-services-icon"
+            "services-icon"
+          }}
+          {{on "click" this.toggleSentFikaList}}
         />
 
-        <h3 class="services-name">Sent</h3>
-        <FikaList @fikas={{this.model.sentFikas}} @isSentFikas={{true}} />
+        <h3
+          class="services-name"
+          {{on "click" this.toggleSentFikaList}}
+        >Sent</h3>
+
       </div>
       <div class="services-container">
 
         <img
           src="/assets/images/received.png"
           alt="received fika"
-          class="services-icon"
+          class={{if
+            this.isReceivedFikaListVisible
+            "clicked-services-icon"
+            "services-icon"
+          }}
+          {{on "click" this.toggleReceivedFikaList}}
         />
 
-        <h3 class="services-name">Received</h3>
-        <FikaList @fikas={{this.model.receivedFikas}} @isSentFikas={{false}} />
+        <h3
+          class="services-name"
+          {{on "click" this.toggleReceivedFikaList}}
+        >Received</h3>
+
       </div>
       <div class="services-container">
 
@@ -56,13 +72,22 @@
         />
 
         <h3 class="services-name">Calender</h3>
+        <p>Under construction</p>
       </div>
     </section>
 
-    <section class="community">
-      <h3 class="community-title">Your Community</h3>
-      <h4 class="community-subtitle">Invite for a fika</h4>
-      <CommunityList @otherUsers={{this.model.otherUsers}} />
+    <section>
+      {{#if this.isSentFikaListVisible}}
+        <FikaList @fikas={{this.model.sentFikas}} @isSentFikas={{true}} />
+      {{/if}}
+      {{#if this.isReceivedFikaListVisible}}
+        <FikaList @fikas={{this.model.receivedFikas}} @isSentFikas={{false}} />
+      {{/if}}
+      <div class="community">
+        <h3 class="community-title">Your Community</h3>
+        <h4 class="community-subtitle">Invite for a fika</h4>
+        <CommunityList @otherUsers={{this.model.otherUsers}} />
+      </div>
     </section>
   </div>
 </div>
