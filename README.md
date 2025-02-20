@@ -1,5 +1,7 @@
-<h3 align="center">Fika Code</h3>
-
+<h1 >Fika Code</h3>
+<div >
+<img src="media/animated-coffee.gif" alt="FikaCode Heading" width="20%" /></div>
+<br>
 <details>
   <summary>Table of Contents</summary>
   <ol>
