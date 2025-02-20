@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import ENV from '../config/environment';
 
 export default class DashboardRoute extends Route {
   @service router;

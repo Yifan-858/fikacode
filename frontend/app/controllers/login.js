@@ -20,6 +20,11 @@ export default class LoginController extends Controller {
   async handleLogin(event) {
     event.preventDefault();
 
+    if (!this.email.trim() || !this.password.trim()) {
+      this.errorMessage = 'Email and password cannot be empty';
+      return;
+    }
+
     try {
       await this.session.authenticate(this.email, this.password);
       this.router.transitionTo('/dashboard');
