@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class DashboardController extends Controller {
   @tracked isSentFikaListVisible = false;
-  @tracked isReceivedFikaListVisible = true;
+  @tracked isReceivedFikaListVisible = false;
 
   @action
   toggleSentFikaList() {
