@@ -6,7 +6,10 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'history',
-    apihost: 'http://127.0.0.1:3000',
+    apihost:
+      environment === 'production'
+        ? process.env.APIHOST
+        : 'http://127.0.0.1:3000',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
