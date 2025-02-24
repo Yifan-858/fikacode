@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-User.create!([
+users = [
   {
     
     name: "Student One",
@@ -48,4 +48,14 @@ User.create!([
     role: "mentor",
     introduction: "I can help with questions regarding C#."
   }
-])
+]
+
+users.each do |user_data|
+  User.find_or_create_by!(email: user_data[:email]) do |user|
+    user.name = user_data[:name]
+    user.password = user_data[:password]
+    user.role = user_data[:role]
+    user.introduction = user_data[:introduction]
+  end
+
+end
