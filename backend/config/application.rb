@@ -11,6 +11,11 @@ module Backend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    # Disable Action Cable (WebSockets)
+    config.action_cable.mount_path = nil
+    config.action_cable.allowed_request_origins = []
+    config.action_cable.disable_request_forgery_protection = true
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
