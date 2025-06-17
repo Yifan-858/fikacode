@@ -106,3 +106,9 @@ li {
   transform: translateX(2px) translateY(2px);
   box-shadow: none;
 }
+
+@media (max-width: 768px) {
+  .submit-button {
+    font-size: 1rem;
+  }
+}

@@ -49,3 +49,29 @@
   font-size: 1.2rem;
   font-weight: 800;
 }
+
+@media (max-width: 768px) {
+  .schedule-date {
+    font-size: 0.8rem;
+  }
+
+  .schedule-label {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .fika-status {
+    font-size: 1rem;
+  }
+  .fika-status-container {
+    margin-left: 0.6rem;
+  }
+
+  .fika-status-button-container {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

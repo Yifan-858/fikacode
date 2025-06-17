@@ -36,3 +36,13 @@
 .scheduel-input {
   margin: 0.5rem auto;
 }
+
+@media (max-width: 768px) {
+  .invitation-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .submit-button {
+    font-size: 1.2rem;
+  }
+}

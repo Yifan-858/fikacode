@@ -1,16 +1,14 @@
-<div>
-  <button
-    class="submit-button"
-    type="button"
-    {{on "click" (fn this.updateFikaStatus "accepted")}}
-  >
-    Accept
-  </button>
-  <button
-    class="submit-button"
-    type="button"
-    {{on "click" (fn this.updateFikaStatus "declined")}}
-  >
-    Decline
-  </button>
-</div>
+<button
+  class="submit-button"
+  type="button"
+  {{on "click" (fn this.updateFikaStatus "accepted")}}
+>
+  Accept
+</button>
+<button
+  class="submit-button"
+  type="button"
+  {{on "click" (fn this.updateFikaStatus "declined")}}
+>
+  Decline
+</button>

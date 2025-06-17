@@ -35,3 +35,17 @@
 .fika-button-container {
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .user-name {
+    font-size: 1rem;
+  }
+  .user-role {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    margin-top: 5px;
+  }
+  .user-introduction {
+    font-size: 0.8rem;
+  }
+}

@@ -60,3 +60,19 @@
   transform: translateX(2px) translateY(2px);
   box-shadow: none;
 }
+@media (max-width: 768px) {
+  .landing-content {
+    width: 70%;
+  }
+  .landing-title {
+    font-size: 2rem;
+  }
+  .landing-slogan {
+    font-size: 1rem;
+  }
+  .login-button,
+  .signup-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+}

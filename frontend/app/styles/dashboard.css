@@ -112,3 +112,51 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    width: 85%;
+  }
+
+  .dashboard-user-profile {
+    padding: 1rem;
+    display: flex;
+  }
+
+  .dashboard-user-avatar {
+    padding: 1rem;
+  }
+
+  .dashboard-user-info {
+    margin-left: 0.5rem;
+  }
+
+  .dashboard-user-name {
+    font-size: 1rem;
+  }
+
+  .dashboard-user-role {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .dashboard-user-introduction {
+    font-size: 0.8rem;
+  }
+
+  .services-note {
+    font-size: 0.6rem;
+  }
+
+  .services-name {
+    font-size: 1rem;
+  }
+
+  .community-title {
+    font-size: 1.2rem;
+  }
+
+  .community-subtitle {
+    font-size: 1rem;
+  }
+}
