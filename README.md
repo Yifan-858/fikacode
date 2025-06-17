@@ -33,7 +33,7 @@
 
 ## About The Project
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5a79769a-6028-4a57-812c-4880e4149323/deploy-status)](https://app.netlify.com/projects/fikacode/deploys)
+Demo: https://fikacode.netlify.app/
 
 Who hasn’t wished for a mentor while learning to code?
 Many turn to online communities to seek help, but sometimes, nothing beats meeting someone face-to-face, sharing knowledge, and growing together over a warm conversation.
