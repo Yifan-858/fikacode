@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # healthcheck route
-  get '/ping', to: 'ping#show', format: :json, as: :ping
+  get '/ping', to: proc { [200, { 'Content-Type' => 'text/plain' }, ['pong']] }
 
   # user route
   resources :users, only: [:create, :index, :show]
