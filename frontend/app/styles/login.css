@@ -34,3 +34,26 @@ h2 {
   justify-content: center;
   align-items: flex-start;
 }
+
+@media (max-width: 768px) {
+  /* .signup-container {
+    width: 80%;
+  }
+  .signup-form {
+    width: 80%;
+    gap: 0.5rem;
+    margin: 0 5rem 1.2rem 5rem;
+  }
+
+  .signup-title {
+    margin-top: 1.2rem;
+    font-size: 1.2rem;
+  } */
+  .form-container {
+    padding: 1.2rem 2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}

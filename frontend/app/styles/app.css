@@ -111,4 +111,13 @@ li {
   .submit-button {
     font-size: 1rem;
   }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  legend {
+    font-size: 0.8rem;
+  }
 }
