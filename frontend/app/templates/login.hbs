@@ -25,8 +25,14 @@
       <button type="submit" class="submit-button">Log in</button>
     </form>
 
-    {{#if this.errorMessage}}
-      <p style="color: red;">{{this.errorMessage}}</p>
-    {{/if}}
   </div>
+  {{#if this.isLoading}}<div class="loading-container">
+      <div class="spinner"></div>
+      <p class="loading-message">It takes some time to login for the first time.
+        Thank you for waiting.</p>
+    </div>{{/if}}
+
+  {{#if this.errorMessage}}
+    <p class="error-message">{{this.errorMessage}}</p>
+  {{/if}}
 </div>

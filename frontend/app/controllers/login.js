@@ -10,6 +10,7 @@ export default class LoginController extends Controller {
   @tracked email = '';
   @tracked password = '';
   @tracked errorMessage = '';
+  @tracked isLoading = false;
 
   @action
   updateField(field, event) {
@@ -19,6 +20,7 @@ export default class LoginController extends Controller {
   @action
   async handleLogin(event) {
     event.preventDefault();
+    this.isLoading = true;
 
     if (!this.email.trim() || !this.password.trim()) {
       this.errorMessage = 'Email and password cannot be empty';
@@ -30,6 +32,8 @@ export default class LoginController extends Controller {
       this.router.transitionTo('/dashboard');
     } catch (error) {
       this.errorMessage = 'Invalid email or password';
+    } finally {
+      this.isLoading = false;
     }
   }
 }
