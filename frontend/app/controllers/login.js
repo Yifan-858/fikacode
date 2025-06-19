@@ -20,6 +20,7 @@ export default class LoginController extends Controller {
   @action
   async handleLogin(event) {
     event.preventDefault();
+    this.errorMessage = '';
     this.isLoading = true;
 
     if (!this.email.trim() || !this.password.trim()) {
